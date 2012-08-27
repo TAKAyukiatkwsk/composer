@@ -3,21 +3,30 @@
 ## インストール
 
 To install Composer, you just need to download the `composer.phar` executable.
+Composer をインストールするためには、まずは実行可能な `composer.phar` をダウンロードする必要があります。
 
     $ curl -s http://getcomposer.org/installer | php
 
 For the details, see the [Introduction](00-intro.md) chapter.
+詳細は、[はじめに](00-intro.md) の章を御覧ください。
 
 To check if Composer is working, just run the PHAR through `php`:
+もし、Composer が動作するかを確認する場合は、 `php` コマンドで PHAR を実行してください:
 
     $ php composer.phar
 
 This should give you a list of available commands.
+これにより、利用可能なコマンドリストが表示されるでしょう。
 
 > **Note:** You can also perform the checks only without downloading Composer
 > by using the `--check` option. For more information, just use `--help`.
 >
+> **Note:** もし、Composer をダウンロードせずに、環境のチェックだけ行いたい場合は
+> `--check` オプションを追加して、実行してください。 さらに情報が欲しい場合は、
+> `--help` オプションを追加してください。
+>
 >     $ curl -s http://getcomposer.org/installer | php -- --help
+
 
 ## `Composer.json`: プロジェクト設定
 
