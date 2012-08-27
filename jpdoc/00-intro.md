@@ -104,7 +104,7 @@ You can run these commands to easily access `composer` from anywhere on your sys
 
 これにより、 `vendor/monolog/monolog` ディレクトリに monolog がダウンロードされます。
 
-## オートロード
+## オートローディング
 
 ダウンロードされたライブラリのほかに、 Composer は ダウンロードしたライブラリの
 クラスをオートロードするための autoload ファイルを生成します。
@@ -115,4 +115,4 @@ You can run these commands to easily access `composer` from anywhere on your sys
 なんと、これだけで monolog を使うことができます! さらに、Composer について
 知りたい場合は、続けて "基本的な使い方" の章をお読みください。
 
-[Basic Usage](01-basic-usage.md) &rarr;
+[基本的な使い方](01-basic-usage.md) &rarr;
