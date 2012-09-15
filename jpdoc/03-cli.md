@@ -361,33 +361,54 @@ performance.
 
 さらに、パフォーマンスのために、PSR-0 パッケージをクラスマップのパッケージに
 最適化することができます。大きなアプリケーションは大量のクラスがあり、
-オートローダーは、リクエスト時間を多く消費する主要なものです。
+オートローダーは、リクエスト時間を多く消費する主要なものです。クラスマップを
+使うことにより開発は不便になりますが、PSR-0 を使うよりは、パフォーマンスに
+有利になります。
 
 ### Options
+### オプション
 
 * **--optimize:** Convert PSR-0 autoloading to classmap to get a faster
   autoloader. This is recommended especially for production, but can take
   a bit of time to run so it is currently not done by default.
 
+* **--optimize:**  高速なオートロードのために、PSR-0
+  オートローディングをクラスマップに変換します。
+  これは、特に本番環境での利用が推奨されますが、最適化実行が完了していない
+  場合、実行に少し時間がかかります。
+
 ## help
 
 To get more information about a certain command, just use `help`.
 
+利用することのできるコマンドを表示する場合は、 `help` を利用してください。
+
     $ php composer.phar help install
 
 ## Environment variables
+
+## 環境変数
 
 You can set a number of environment variables that override certain settings.
 Whenever possible it is recommended to specify these settings in the `config`
 section of `composer.json` instead. It is worth noting that that the env vars
 will always take precedence over the values specified in `composer.json`.
 
+いくつかの環境変数を上書きすることにより、Composer の設定を変更することができます。
+可能であれば、 `composer.json` の `config` に設定することが推奨されます。
+これは、`composer.json` に設定された環境変数を常時使う場合に、とても便利です。
+
+
 ### COMPOSER
 
 By setting the `COMPOSER` env variable it is possible to set the filename of
 `composer.json` to something else.
 
+`COMPOSER` 環境変数を設定することにより、 `composer.json` のファイル名を
+別のものに変更することができます。
+
 For example:
+例:
 
     $ COMPOSER=composer-other.json php composer.phar install
 
@@ -396,15 +417,24 @@ For example:
 By setting this var you can specify the version of the root package, if it can
 not be guessed from VCS info and is not present in `composer.json`.
 
+この値を設定することにより、ルートパッケージのバージョンを定義することができます。
+もし、VCSの情報や、 `composer.json` に設定されていない場合は、この値を使います。
+
 ### COMPOSER_VENDOR_DIR
 
 By setting this var you can make composer install the dependencies into a
 directory other than `vendor`.
 
+この値を設定することにより、composer の依存をインストール先を
+`vendor` から変更することができます。
+
 ### COMPOSER_BIN_DIR
 
 By setting this option you can change the `bin` ([Vendor Bins](articles/vendor-bins.md))
 directory to something other than `vendor/bin`.
+
+この値を変更することにより、 `bin` ([Vendor Bins](articles/vendor-bins.md))
+ディレクトリの値を、 `vendor/bin` から変更することができます。
 
 ### http_proxy or HTTP_PROXY
 
@@ -412,10 +442,19 @@ If you are using composer from behind an HTTP proxy, you can use the standard
 `http_proxy` or `HTTP_PROXY` env vars. Simply set it to the URL of your proxy.
 Many operating systems already set this variable for you.
 
+もし、composer を HTTP proxy 下で利用したい場合は、環境標準の `http_proxy` か
+`HTTP_PROXY` を利用することができます。単純に、proxy の URL をセットしてください。
+多くのオペレーションシステムは、既にこの値がセットされています。
+
 Using `http_proxy` (lowercased) or even defining both might be preferable since
 some tools like git or curl will only use the lower-cased `http_proxy` version.
 Alternatively you can also define the git proxy using
 `git config --global http.proxy <proxy url>`.
+
+git や curl といったツールは 小文字の `http_proxy` しかサポートしていないため、
+`http_proxy` を設定するか、両方の値を設定することが望ましいでしょう。
+ほかに、 `git config --global http.proxy <proxy url>` という
+git の設定をすることで git のプロキシの設定を行うことができます。
 
 ### COMPOSER_HOME
 
@@ -423,9 +462,17 @@ The `COMPOSER_HOME` var allows you to change the composer home directory. This
 is a hidden, global (per-user on the machine) directory that is shared between
 all projects.
 
+`COMPOSER_HOME` は、composer のホームディレクトリを変更することができます
+これは、隠しグローバルディレクトリ (ユーザごと) によって、全プロジェクトに
+横断します。
+
 By default it points to `/home/<user>/.composer` on *nix,
 `/Users/<user>/.composer` on OSX and
 `C:\Users\<user>\AppData\Roaming\Composer` on Windows.
+
+デフォルトでは、 *nix では、 `/home/<user>/.composer`
+OSX では、 `/Users/<user>/.composer`
+Windows では、 `C:\Users\<user>\AppData\Roaming\Composer\ です。
 
 #### COMPOSER_HOME/config.json
 
@@ -433,15 +480,28 @@ You may put a `config.json` file into the location which `COMPOSER_HOME` points
 to. Composer will merge this configuration with your project's `composer.json`
 when you run the `install` and `update` commands.
 
+`config.json` ファイルを `COMPOSER_HOME` で指定したディレクトリに配置することにより
+Composer は、 `install` や `update` コマンドを実行した時に、
+このファイルの設定を、プロジェクトの `composer.json` とマージします。
+
 This file allows you to set [configuration](04-schema.md#config) and
 [repositories](05-repositories.md) for the user's projects.
 
+このファイルには [設定](04-schema.md#config) と [レポジトリ](05-repository.md)
+の値をユーザディレクトリで設定することができます。
+
 In case global configuration matches _local_ configuration, the _local_
 configuration in the project's `composer.json` always wins.
+
+グローバルの設定と _ローカル_ の設定が競合する場合、 プロジェクトの `composer.json`
+にある、 _ローカル_ の設定が常に優先されます。
 
 ### COMPOSER_PROCESS_TIMEOUT
 
 This env var controls the time composer waits for commands (such as git
 commands) to finish executing. The default value is 300 seconds (5 minutes).
 
-&larr; [Libraries](02-libraries.md)  |  [Schema](04-schema.md) &rarr;
+この設定は、 composer がコマンド (gitコマンドなど) の実行に対して
+待つ時間を設定します。デフォルトは 300 秒 (5分) です。
+
+&larr; [ライブラリ](02-libraries.md)  |  [スキーマ](04-schema.md) &rarr;
