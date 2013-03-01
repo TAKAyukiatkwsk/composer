@@ -4,6 +4,9 @@
 This chapter will explain the concept of packages and repositories, what kinds
 of repositories are available, and how they work.
 
+この章では、パッケージとレポジトリのコンセプト、どのようなレポジトリが使用できるのか、
+どのようにレポジトリが働くのかを解説します。
+
 ## Concepts
 ## コンセプト
 
