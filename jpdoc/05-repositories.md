@@ -13,6 +13,9 @@ of repositories are available, and how they work.
 Before we look at the different types of repositories that exist, we need to
 understand some of the basic concepts that composer is built on.
 
+存在する様々なタイプのレポジトリを見る前に、composer を築いている基本的な
+コンセプトを理解する必要があります。
+
 ### Package
 ### パッケージ
 
@@ -22,25 +25,53 @@ code, but in theory it could be anything. And it contains a package
 description which has a name and a version. The name and the version are used
 to identify the package.
 
+composer は依存関係マネージャーです。composer はパッケージをローカルに
+インストールします。パッケージは本質的には何かを含む単なるディレクトリです。
+この場合は PHP のコードですが、理論上は何でも構いません。また、名前とバージョンを
+持つパッケージの記述を含みます。この名前とバージョンはパッケージを特定するのに
+使われます。
+
 In fact, internally composer sees every version as a separate package. While
 this distinction does not matter when you are using composer, it's quite
 important when you want to change it.
+
+TODO: Fix me
+
+実際には、composer は内部的にすべてのバージョンを別々のパッケージとして見なします。
+この差異は composer を使うときには問題ではありませんが、it を変更するときには
+非常に重要となります。
 
 In addition to the name and the version, there is useful metadata. The information
 most relevant for installation is the source definition, which describes where
 to get the package contents. The package data points to the contents of the
 package. And there are two options here: dist and source.
 
+名前とバージョンに加えて役に立つメタデータがあります。インストールに最も関連した
+情報はソース定義です。これはパッケージをどこから取得するかを記述します。この
+データはパッケージのコンテンツを指し示しており、2つのオプションがあります。dist
+と source です。
+
 **Dist:** The dist is a packaged version of the package data. Usually a
 released version, usually a stable release.
+
+**Dist:** dist はパッケージデータを圧縮した版です。普通はリリースバージョン、
+もしくは安定版のバージョンです。
 
 **Source:** The source is used for development. This will usually originate
 from a source code repository, such as git. You can fetch this when you want
 to modify the downloaded package.
 
+**Source:** source は開発に使われています。普通は git のようなソースコード
+レポジトリを起源とするでしょう。ダウンロードしたパッケージを修正したい場合は
+ソースコードレポジトリからソースコードを取得できます。
+
 Packages can supply either of these, or even both. Depending on certain
 factors, such as user-supplied options and stability of the package, one will
 be preferred.
+
+パッケージはこれらのうちのどちらか、もしくは両方を提供します。特定の要因、すなわち
+ユーザーが提供したオプションやパッケージの安定性といったような要因によっては一つ
+を提供するのが好まれます。
 
 ### Repository
 ### レポジトリ
@@ -48,13 +79,26 @@ be preferred.
 A repository is a package source. It's a list of packages/versions. Composer
 will look in all your repositories to find the packages your project requires.
 
+レポジトリはパッケージのソースです。これはパッケージとバージョンのリストです。
+Composer はすべてのレポジトリを調べてプロジェクトが必要とするパッケージを
+見つけてきます。
+
 By default only the Packagist repository is registered in Composer. You can
 add more repositories to your project by declaring them in `composer.json`.
+
+デフォルトでは Packagist レポジトリのみが Composer に登録されています。
+`composer.json` に追加したいレポジトリを書いておけば、プロジェクトにそれらの
+レポジトリを追加できます。
 
 Repositories are only available to the root package and the repositories
 defined in your dependencies will not be loaded. Read the
 [FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md) if you
 want to learn why.
+
+レポジトリはルートパッケージでのみ使用できます、依存関係で定義されたレポジトリは
+ロードされません。理由を知りたければ
+[FAQ entry](faqs/why-can't-composer-load-repositories-recursively.md) を読んで
+ください。
 
 ## Types
 ## タイプ
