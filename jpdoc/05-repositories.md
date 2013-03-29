@@ -104,15 +104,24 @@ want to learn why.
 ## タイプ
 
 ### Composer
+### Composer
 
 The main repository type is the `composer` repository. It uses a single
 `packages.json` file that contains all of the package metadata.
+
+メインのレポジトリタイプは`composer`レポジトリです。これは唯一`packages.json`
+ファイルを使用します。このファイルにはパッケージのメタデータ全てが含まれます。
 
 This is also the repository type that packagist uses. To reference a
 `composer` repository, just supply the path before the `packages.json` file.
 In case of packagist, that file is located at `/packages.json`, so the URL of
 the repository would be `packagist.org`. For `example.org/packages.json` the
 repository URL would be `example.org`.
+
+これは packagist が使用するレポジトリタイプでもあります。`composer`レポジトリを
+参照するには`packages.json`ファイルの前にパスを付けます。packagist の場合、
+ファイルは`/packages.json`に存在し、レポジトリのURLは`packagist.org`です。
+`example.org/packages.json`の場合、レポジトリのURLは`example.org`となります。
 
 #### packages
 
